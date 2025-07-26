@@ -1,0 +1,45 @@
+
+📊 ADAPTIVE VALIDATION RESULTS:
+   Sharpe Ratio: 3.384
+   Total Return: 0.24%
+   Max Drawdown: 0.00%
+   Win Rate: 4.55%
+
+🔧 ADAPTIVE PARAMETERS:
+   Regularization: 0.050
+   Max Features: 50
+   Threshold Multiplier: 1.00
+   Position Size Multiplier: 1.00
+   Adaptation Count: 0
+
+📈 COMPREHENSIVE BACKTEST RESULTS:
+   Total Return: 0.24%
+   Annualized Return: 2.74%
+   Volatility: 0.80%
+   Sharpe Ratio: 3.427
+   Sortino Ratio: 0.000
+   Max Drawdown: 0.00%
+   Calmar Ratio: 0.000
+   Win Rate: 4.55%
+   Profit Factor: 0.000
+   Average Win: 0.24%
+   Average Loss: 0.00%
+   Best Day: 0.24%
+   Worst Day: -0.00%
+
+⚠️  RISK ANALYSIS:
+   VaR (95%): 0.00%
+   CVaR (95%): 0.00%
+   Downside Deviation: nan%
+   Skewness: 4.690
+   Kurtosis: 22.000
+   Beta: 0.004
+   Alpha: 0.88%
+
+📊 TRADING STATISTICS:
+   Total Trades: 1
+   Winning Trades: 1
+   Losing Trades: 0
+   Average Trade Duration: 1.0 days
+   Largest Win: 0.24%
+   Largest Loss: 0.00%

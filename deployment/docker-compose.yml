@@ -1,0 +1,193 @@
+version: '3.8'
+
+services:
+  # Main trading application
+  gold-algo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gold-algo-trading
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+    env_file:
+      - ../.env
+    volumes:
+      - ../data:/app/data
+      - ../logs:/app/logs
+      - ../cache:/app/cache
+      - ../reports:/app/reports
+    networks:
+      - trading-network
+    depends_on:
+      - postgres
+      - redis
+    command: ["python", "main.py"]
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:15
+    container_name: gold-algo-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gold_algo
+      POSTGRES_USER: ${DB_USER:-goldalgo}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - trading-network
+
+  # Redis for caching and message queue
+  redis:
+    image: redis:7-alpine
+    container_name: gold-algo-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - trading-network
+
+  # Airflow for scheduling
+  airflow-webserver:
+    image: apache/airflow:2.7.1
+    container_name: gold-algo-airflow-webserver
+    restart: unless-stopped
+    environment:
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${DB_USER:-goldalgo}:${DB_PASSWORD:-secure_password}@postgres/airflow
+      AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://${DB_USER:-goldalgo}:${DB_PASSWORD:-secure_password}@postgres/airflow
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY:-your-fernet-key-here}
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ../dags:/opt/airflow/dags
+      - ../logs:/opt/airflow/logs
+      - ../plugins:/opt/airflow/plugins
+    ports:
+      - "8080:8080"
+    networks:
+      - trading-network
+    depends_on:
+      - postgres
+      - redis
+
+  airflow-scheduler:
+    image: apache/airflow:2.7.1
+    container_name: gold-algo-airflow-scheduler
+    restart: unless-stopped
+    environment:
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${DB_USER:-goldalgo}:${DB_PASSWORD:-secure_password}@postgres/airflow
+      AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://${DB_USER:-goldalgo}:${DB_PASSWORD:-secure_password}@postgres/airflow
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY:-your-fernet-key-here}
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ../dags:/opt/airflow/dags
+      - ../logs:/opt/airflow/logs
+      - ../plugins:/opt/airflow/plugins
+    networks:
+      - trading-network
+    depends_on:
+      - postgres
+      - redis
+
+  # Prometheus for monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: gold-algo-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - trading-network
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: gold-algo-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - trading-network
+    depends_on:
+      - prometheus
+
+  # Streamlit dashboard
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: gold-algo-dashboard
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=gold_algo
+      - DB_USER=${DB_USER:-goldalgo}
+      - DB_PASSWORD=${DB_PASSWORD:-secure_password}
+    volumes:
+      - ../data:/app/data
+      - ../reports:/app/reports
+    networks:
+      - trading-network
+    depends_on:
+      - postgres
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: gold-algo-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    networks:
+      - trading-network
+    depends_on:
+      - gold-algo
+      - dashboard
+      - grafana
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  trading-network:
+    driver: bridge 

@@ -1,0 +1,13 @@
+
+📊 ADAPTIVE VALIDATION RESULTS:
+   Sharpe Ratio: -0.180
+   Total Return: -0.59%
+   Max Drawdown: -1.46%
+   Win Rate: 1.10%
+
+🔧 ADAPTIVE PARAMETERS:
+   Regularization: 0.050
+   Max Features: 50
+   Threshold Multiplier: 1.00
+   Position Size Multiplier: 1.00
+   Adaptation Count: 0

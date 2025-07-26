@@ -1,0 +1,219 @@
+# Core Data Science & ML
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+xgboost>=1.7.0
+lightgbm>=3.3.0
+catboost>=1.2.0
+
+# Deep Learning
+torch>=2.0.0
+tensorflow>=2.8
+transformers>=4.30.0
+keras>=2.13.0
+
+# Bayesian & Statistical
+pymc>=5.0.0
+statsmodels>=0.14.0
+arch>=6.2.0
+
+# Time Series
+darts>=0.24.0
+tsfresh>=0.20.0
+kats>=0.2.0
+sktime>=0.20.0
+pmdarima>=2.0.0
+
+# Data Sources & APIs
+yfinance>=0.2.0
+fredapi>=0.5.0
+newsapi-python>=0.2.6
+tweepy>=4.14.0
+pycot>=0.1.0
+requests>=2.31.0
+alpha-vantage>=2.3.1
+
+# Database & Storage
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+pyarrow>=12.0.0
+fastparquet>=0.8.0
+influxdb-client>=1.36.0
+
+# Backtesting
+vectorbt>=0.25.0
+backtrader>=1.9.78
+zipline-reloaded>=2.0.0
+
+# Execution & Trading
+ib_insync>=0.9.85
+oandapyV20>=0.7.0
+alpaca-py>=0.13.0
+ccxt>=4.0.0
+
+# Workflow & Orchestration
+apache-airflow>=2.7.0
+prefect>=2.10.0
+
+# Experiment Tracking & Versioning
+mlflow>=2.6.0
+dvc>=3.20.0
+wandb>=0.15.0
+
+# Visualization & Dashboard
+plotly>=5.15.0
+dash>=2.11.0
+streamlit>=1.25.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+bokeh>=3.0.0
+
+# Monitoring & Logging
+prometheus-client>=0.17.0
+structlog>=23.1.0
+grafana-api>=1.0.3
+
+# NLP & Sentiment
+vaderSentiment>=3.3.2
+nltk>=3.8.0
+spacy>=3.6.0
+textblob>=0.17.0
+beautifulsoup4>=4.12.0
+
+# Configuration & Environment
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+pydantic>=2.0.0
+click>=8.1.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+
+# Development
+black>=23.7.0
+flake8>=6.0.0
+mypy>=1.5.0
+pre-commit>=3.3.0
+isort>=5.12.0
+
+# Jupyter
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+ipywidgets>=8.0.0
+nbformat>=5.9.0
+
+# Anomaly Detection
+pyod>=1.1.0
+adtk>=0.6.0
+
+# Technical Analysis
+TA-Lib>=0.4.0
+pandas-ta>=0.3.14b0
+talib-binary>=0.4.0
+
+# Performance Analysis
+pyfolio>=0.9.2
+empyrical>=0.5.5
+pyfolio-reloaded>=0.9.2
+
+# Utilities
+tqdm>=4.65.0
+joblib>=1.3.0
+python-dateutil>=2.8.2
+pytz>=2023.3
+schedule>=1.2.0
+
+# Web Framework
+fastapi>=0.100.0
+uvicorn>=0.23.0
+
+# Async Support
+aiohttp>=3.8.0
+asyncio-mqtt>=0.11.0
+
+# Security
+cryptography>=41.0.0
+passlib>=1.7.4
+
+# Cloud & Infrastructure
+boto3>=1.28.0
+google-cloud-storage>=2.10.0
+azure-storage-blob>=12.17.0
+
+# Time Series Database
+influxdb>=5.3.0
+timescaledb>=0.1.0
+
+# Message Queuing
+redis>=4.6.0
+celery>=5.3.0
+
+# API Documentation
+pydantic>=2.0.0
+fastapi>=0.100.0
+
+# Data Validation
+cerberus>=1.3.0
+marshmallow>=3.20.0
+
+# Caching
+cachetools>=5.3.0
+diskcache>=5.6.0
+
+# Parallel Processing
+multiprocessing-logging>=0.3.0
+concurrent-futures>=3.1.1
+
+# Financial Data
+quandl>=3.7.0
+pandas-datareader>=0.10.0
+yfinance>=0.2.0
+
+# Risk Management
+pyfolio>=0.9.2
+empyrical>=0.5.5
+
+# Optimization
+scipy>=1.10.0
+cvxpy>=1.3.0
+pulp>=2.7.0
+
+# Signal Processing
+scipy>=1.10.0
+librosa>=0.10.0
+
+# Geospatial (for macro analysis)
+geopandas>=0.13.0
+folium>=0.14.0
+
+# Network Analysis
+networkx>=3.1.0
+community>=0.15.0
+
+# Advanced Analytics
+scikit-optimize>=0.9.0
+optuna>=3.2.0
+hyperopt>=0.2.7
+
+# Model Interpretability
+shap>=0.42.0
+lime>=0.2.0
+eli5>=0.13.0
+
+# Data Quality
+great-expectations>=0.17.0
+pandera>=0.17.0
+
+# Monitoring & Alerting
+slack-sdk>=3.21.0
+telegram-bot>=0.13.0
+smtplib2>=0.2.0
+
+# Documentation
+sphinx>=7.0.0
+sphinx-rtd-theme>=1.3.0
+myst-parser>=1.0.0 
+databento>=0.17.0 
