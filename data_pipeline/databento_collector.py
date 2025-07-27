@@ -1,9 +1,10 @@
 import os
+from dotenv import load_dotenv
 
-# Set the API key as an environment variable before importing databento
-os.environ["DATABENTO_API_KEY"] = "db-KYxSaDPmMwde7AbaT6kn5dQWf5utd"
-print(f"[DEBUG] DATABENTO_API_KEY set: {os.environ.get('DATABENTO_API_KEY')}")
+# Load environment variables from .env file
+load_dotenv()
 
+# Import databento - API key should be set via environment variable
 import databento as db
 import pandas as pd
 import yfinance as yf
@@ -15,7 +16,6 @@ class DatabentoGoldCollector:
         self.api_key = api_key or os.getenv("DATABENTO_API_KEY")
         if not self.api_key:
             raise ValueError("Databento API key must be provided or set as DATABENTO_API_KEY.")
-        print(f"[DEBUG] Using Databento API key: {self.api_key}")
         self.client = db.Historical()
 
     def discover_datasets(self):
