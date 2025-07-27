@@ -82,6 +82,15 @@ config.py
 secrets.py
 *.key
 *.pem
+api_keys.txt
+credentials.json
+secrets.json
+*.env
+.env*
+!.env.example
+
+# Documentation files
+README.md
 
 # Model files
 *.pkl
