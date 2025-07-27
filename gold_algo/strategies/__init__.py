@@ -3,15 +3,32 @@ Strategy module for the gold trading framework.
 """
 
 from .base import BaseStrategy
-from .trend_following import TrendFollowingStrategy
-from .mean_reversion import MeanReversionStrategy
-from .enhanced_nn import EnhancedNNStrategy
-from .dl_regression import EnhancedDLRegressionStrategy
+
+# Import strategies that exist
+try:
+    from .ultra_aggressive_strategy import UltraAggressiveStrategy
+except ImportError:
+    pass
+
+try:
+    from .aggressive_trading_strategy import AggressiveTradingStrategy
+except ImportError:
+    pass
+
+try:
+    from .quantitative_2plus_sharpe_strategy import Quantitative2PlusSharpeStrategy
+except ImportError:
+    pass
+
+try:
+    from .risk_enhanced_strategy import RiskEnhancedStrategy
+except ImportError:
+    pass
 
 __all__ = [
     'BaseStrategy',
-    'TrendFollowingStrategy',
-    'MeanReversionStrategy',
-    'EnhancedNNStrategy',
-    'EnhancedDLRegressionStrategy'
+    'UltraAggressiveStrategy',
+    'AggressiveTradingStrategy', 
+    'Quantitative2PlusSharpeStrategy',
+    'RiskEnhancedStrategy'
 ]

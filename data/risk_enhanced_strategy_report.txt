@@ -1,0 +1,68 @@
+================================================================================
+RISK-ENHANCED STRATEGY COMPREHENSIVE TEST REPORT
+================================================================================
+Test Date: 2025-07-27 22:09:33
+
+RISK-ENHANCED STRATEGY RESULTS
+----------------------------------------
+Total Return: 107.18%
+Max Drawdown: -37.92%
+Sharpe Ratio: 39.770
+Win Rate: 0.00%
+Profit Factor: inf
+Total Trades: 60
+Initial Capital: $100,000.00
+Final Capital: $207,182.08
+
+RISK MANAGEMENT METRICS
+----------------------------------------
+Current Drawdown: 0.00%
+High Water Mark: 205258.566
+Position Scale: 1.000
+Soft Stop Triggered: True
+Hard Stop Triggered: True
+Recovery Mode: False
+Average ATR: 1.3195
+Average Volatility: 6.92%
+
+BASELINE STRATEGY RESULTS
+----------------------------------------
+Total Return: 0.95%
+Max Drawdown: -4.91%
+Sharpe Ratio: 0.000
+Win Rate: 53.23%
+Profit Factor: 1.084
+Total Trades: 62
+Initial Capital: $0.00
+Final Capital: $0.00
+
+STRATEGY COMPARISON
+----------------------------------------
+Metric               Baseline     Risk-Enhanced   Improvement  % Change  
+--------------------------------------------------------------------------------
+Total Return         0.95%        107.18%         106.23%      +11186.1% 
+Max Drawdown         -4.91%       -37.92%         33.01%       +672.4%   
+Sharpe Ratio         0.000        39.770          39.770       +0.0%     
+Win Rate             53.23%       0.00%           -53.23%      -100.0%   
+Profit Factor        1.084        inf             inf          +inf%     
+Total Trades         62           60              -2           -3.2%     
+
+KEY FINDINGS
+----------------------------------------
+❌ Max Drawdown Objective NOT MET: Above 15% threshold
+✅ Sharpe Ratio Objective MET: Improved over baseline
+✅ Target Sharpe Ratio MET: Above 0.776 threshold
+
+RISK MANAGEMENT EFFECTIVENESS
+----------------------------------------
+🟡 Soft Stop (-10%) was triggered during backtest
+🔴 HARD STOP (-15%) was triggered - Trading halted
+🟢 Position scaling: Full size (100%)
+
+CONCLUSION
+----------------------------------------
+⚠️  PARTIAL SUCCESS: Some objectives not met
+   - Further optimization may be needed
+   - Consider adjusting risk parameters
+
+================================================================================

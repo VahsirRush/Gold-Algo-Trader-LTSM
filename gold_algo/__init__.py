@@ -5,16 +5,20 @@ Gold trading algorithm framework.
 __version__ = "1.0.0"
 __author__ = "Gold Trading Team"
 
-from .strategies import (
-    TrendFollowingStrategy,
-    MeanReversionStrategy,
-    EnhancedNNStrategy,
-    EnhancedDLRegressionStrategy
-)
-
-__all__ = [
-    'TrendFollowingStrategy',
-    'MeanReversionStrategy',
-    'EnhancedNNStrategy',
-    'EnhancedDLRegressionStrategy'
-]
+# Import strategies that exist
+try:
+    from .strategies import (
+        UltraAggressiveStrategy,
+        AggressiveTradingStrategy,
+        Quantitative2PlusSharpeStrategy,
+        RiskEnhancedStrategy
+    )
+    
+    __all__ = [
+        'UltraAggressiveStrategy',
+        'AggressiveTradingStrategy',
+        'Quantitative2PlusSharpeStrategy',
+        'RiskEnhancedStrategy'
+    ]
+except ImportError:
+    __all__ = []
